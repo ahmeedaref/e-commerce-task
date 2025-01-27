@@ -5,6 +5,7 @@ import { UsersModule } from './users/users.module';
 import { OrderModule } from './order/order.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
+import { ProductModule } from './product/product.module';
 @Module({
   imports: [
     UsersModule,
@@ -16,6 +17,7 @@ import { ConfigModule } from '@nestjs/config';
       isGlobal: true,
       envFilePath: '.env',
     }),
+    ProductModule,
   ],
   controllers: [AppController],
   providers: [AppService],

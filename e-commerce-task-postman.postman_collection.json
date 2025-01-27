@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"ali\",\r\n    \"email\":\"ali@gamil.com\",\r\n    \"password\":\"12345\"\r\n}",
+					"raw": "{\r\n    \"name\":\"hassan\",\r\n    \"email\":\"hassa@gamil.com\",\r\n    \"password\":\"12345\",\r\n    \"role\":\"Admin\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -42,7 +42,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"ali\",\r\n    \"email\":\"ali@gamil.com\",\r\n    \"password\":\"12345\"\r\n}",
+					"raw": "{\r\n \"name\":\"ahmed\",\r\n    \"email\":\"ahmed@gamil.com\",\r\n    \"password\":\"12345\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -59,6 +59,161 @@
 					"path": [
 						"users",
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllproducts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTgxMzgxYzliZmZkNzMyZjYwMGVkYiIsImVtYWlsIjoiaGFzc2FAZ2FtaWwuY29tIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzM4MDIwNjk3LCJleHAiOjE3MzgwMjQyOTd9.cFDGUAnew5liozD5qJiVudTF_ddOrWot1oJ5nwnRi9U",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTdjOTRlMjMyMWZiYmRjOWJiYzVlOSIsImVtYWlsIjoiYWhtZWRAZ2FtaWwuY29tIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE3MzgwMjA4MDEsImV4cCI6MTczODAyNDQwMX0.5d4KEHfvotL1XoWdzqCoc363DLWiLao9tHrGcqCaNK0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"mouse\",\r\n    \"price\":150,\r\n    \"quantity\":6,\r\n    \"createdBy\":\"6797c94e2321fbbdc9bbc5e9\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getone product",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTdjOTRlMjMyMWZiYmRjOWJiYzVlOSIsImVtYWlsIjoiYWhtZWRAZ2FtaWwuY29tIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE3MzgwMjAyMDcsImV4cCI6MTczODAyMzgwN30.jf9lMNPXWzl83F51DkGUcapcCOvTbt7vcyb1N_lc2Rw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/product/679814d2037453cca092fa1b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"product",
+						"679814d2037453cca092fa1b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update product",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTgxMzgxYzliZmZkNzMyZjYwMGVkYiIsImVtYWlsIjoiaGFzc2FAZ2FtaWwuY29tIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzM4MDIwNjk3LCJleHAiOjE3MzgwMjQyOTd9.cFDGUAnew5liozD5qJiVudTF_ddOrWot1oJ5nwnRi9U",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"keypord\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/product/679815de037453cca092fa2c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"product",
+						"679815de037453cca092fa2c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete product",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTgxMzgxYzliZmZkNzMyZjYwMGVkYiIsImVtYWlsIjoiaGFzc2FAZ2FtaWwuY29tIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzM4MDIwNjk3LCJleHAiOjE3MzgwMjQyOTd9.cFDGUAnew5liozD5qJiVudTF_ddOrWot1oJ5nwnRi9U",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/product/679815de037453cca092fa2c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"product",
+						"679815de037453cca092fa2c"
 					]
 				}
 			},
