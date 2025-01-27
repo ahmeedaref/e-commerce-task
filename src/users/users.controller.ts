@@ -9,4 +9,9 @@ export class UsersController {
     const user = await this.userService.register(body);
     return user;
   }
+  @Post('login')
+  async login(@Body() body: CreateDto) {
+    const user = await this.userService.login(body);
+    return user;
+  }
 }
