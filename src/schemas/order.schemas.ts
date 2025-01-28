@@ -4,57 +4,63 @@ import { ProductDocument } from './product.schema';
 
 export interface OrderDocument extends Document {
   userId: UserDocument;
-  products: { product: ProductDocument; quantity: number }[];
-  status: string;
+  products: {
+    product: ProductDocument['_id'];
+    quantity: number;
+    price: number;
+  }[];
+  status: String;
   totalprice: number;
   createdAt: Date;
   UpdateAt: Date;
 }
-
+export enum OrderStatus {
+  PENDING = 'PENDING',
+  CONFIRMED = 'CONFIRMED',
+  SHIPPED = 'SHIPPED',
+  DELIVERED = 'DELIVERED',
+  CANCELLED = 'CANCELLED',
+}
+const ProductSchema = new Schema(
+  {
+    product: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
+    quantity: { type: Number, required: true },
+    price: { type: Number },
+  },
+  { _id: false }, // prevents generating a _id for subdocuments
+);
 export const OrderSchema = new Schema<OrderDocument>(
   {
     userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    products: [
-      {
-        product: {
-          type: Schema.Types.ObjectId,
-          ref: 'Product',
-          required: true,
-        },
-        quantity: { type: Number, required: true },
-      },
-    ],
+    products: { type: [ProductSchema], required: true },
     status: {
       type: String,
-      enum: ['PENDING,', 'CONFIRMED', 'SHIPPED', 'DELIVERED', 'CANCELLED'],
-      default: 'PENDING',
+      enum: Object.values(OrderStatus),
+      default: OrderStatus.PENDING,
     },
-    totalprice: { type: Number, default: 0 },
+
+    totalprice: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,
   },
 );
-OrderSchema.pre<OrderDocument>('save', async function (next) {
-  const ProductModel = model<ProductDocument>('Product');
+OrderSchema.pre('save', async function (next) {
+  const order = this as OrderDocument;
 
-  const products = await Promise.all(
-    this.products.map(async (item) => {
-      const product = await ProductModel.findById(item.product);
-      if (!product) {
-        throw new Error(`Product Not found`);
-      }
-      return {
-        price: product.price,
-        quantity: item.quantity,
-      };
-    }),
-  );
+  
+  await order.populate('products.product');
 
-  this.totalprice = products.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0,
-  );
+
+  order.totalprice = order.products.reduce((sum, item: any) => {
+    const productPrice = item.product.price; 
+    return sum + productPrice * item.quantity;
+  }, 0);
+
   next();
 });
+
 export const Order = model<OrderDocument>('Order', OrderSchema);

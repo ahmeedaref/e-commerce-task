@@ -218,6 +218,34 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "create order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\":\"6797c9bb2321fbbdc9bbc5ec\",\r\n     \"products\":[\r\n        {\"productId\":\"6755fa83aaaf4a5bc478e886\",\"quantity\":2,\"price\":550},\r\n        {\"productId\":\"67562c9962928c287c187589\",\"quantity\":1,\"price\":800}  \r\n     ] ,\r\n     \"status\":\"PENDING\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

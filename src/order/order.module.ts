@@ -6,6 +6,7 @@ import { User, UserSchema } from 'src/schemas/users.schema';
 import { ProductSchema, Product } from '../schemas/product.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersService } from 'src/users/users.service';
+import { JwtService } from '@nestjs/jwt';
 @Module({
   imports: [
     MongooseModule.forFeature([
@@ -15,6 +16,6 @@ import { UsersService } from 'src/users/users.service';
     ]),
   ],
   controllers: [OrderController],
-  providers: [OrderService, UsersService],
+  providers: [OrderService, UsersService, JwtService],
 })
 export class OrderModule {}
