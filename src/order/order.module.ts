@@ -7,6 +7,8 @@ import { ProductSchema, Product } from '../schemas/product.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersService } from 'src/users/users.service';
 import { JwtService } from '@nestjs/jwt';
+import { AuthValidate } from 'src/gaurds/validate-token';
+import { CheckAdmin } from 'src/gaurds/check-Admin';
 @Module({
   imports: [
     MongooseModule.forFeature([
@@ -16,6 +18,14 @@ import { JwtService } from '@nestjs/jwt';
     ]),
   ],
   controllers: [OrderController],
-  providers: [OrderService, UsersService, JwtService],
+  providers: [
+    OrderService,
+    UsersService,
+    JwtService,
+    AuthValidate,
+    CheckAdmin,
+    { provide: 'role', useValue: 'Admin' },
+  ],
+  exports: ['role'],
 })
 export class OrderModule {}
