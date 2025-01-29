@@ -127,21 +127,30 @@ export class OrderService {
     const { userId, products, status } = data;
     const productDetails = await this.getProductDetails(products);
     const totalprice = this.calculateTotalPrice(productDetails);
-    const order = await this.OrderModel.findByIdAndUpdate(id, {
-      userId,
-      products: productDetails.map(({ product, quantity }) => ({
-        product,
-        quantity,
-      })),
-      status,
-      totalprice,
-    })
+    const order = await this.OrderModel.findByIdAndUpdate(
+      id,
+      {
+        userId,
+        products: productDetails.map(({ product, quantity }) => ({
+          product,
+          quantity,
+        })),
+        status,
+        totalprice,
+      },
+      { next: true },
+    )
       .populate('products.product')
       .exec();
     if (!order) {
       throw new NotFoundException('Order Not found');
     }
-    return order.save();
+
+    const updatedOrder = await this.OrderModel.findById(id)
+      .populate('products.product')
+      .exec();
+
+    return updatedOrder;
   }
 
   async deleteOrder(id: string) {
