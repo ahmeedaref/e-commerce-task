@@ -8,7 +8,9 @@ import { Model } from 'mongoose';
 import { createOrderDto } from './Dtos/create-order-dto';
 import { OrderDocument, OrderStatus } from 'src/schemas/order.schemas';
 import { ProductDocument } from 'src/schemas/product.schema';
-import { UpdateOrderDto } from './Dtos/update-order-dto';
+import { UpdateOrderStatusDto } from './Dtos/update-order-dto';
+import { UpdateOrder } from './Dtos/update-order-dto';
+import { Query } from '@nestjs/common';
 @Injectable()
 export class OrderService {
   constructor(
@@ -98,24 +100,43 @@ export class OrderService {
     }
     return order;
   }
-  async updateOrder(id: string, data: UpdateOrderDto) {
+  async updateOrderStatus(
+    id: string,
+    data: UpdateOrderStatusDto,
+  ): Promise<OrderDocument> {
     const order = await this.OrderModel.findById(id);
     if (!order) {
-      throw new NotFoundException('Order Not found');
+      throw new NotFoundException('Order not found');
     }
-    if (
-      order.status === OrderStatus.DELIVERED &&
-      data.status !== order.status
-    ) {
-      throw new BadRequestException(
-        'it can not move DELIVRED status to another status',
-      );
-    }
-
     if (data.status) {
+      if (
+        order.status === OrderStatus.DELIVERED &&
+        data.status !== order.status
+      ) {
+        throw new BadRequestException(
+          'Cannot move from DELIVERED to another status',
+        );
+      }
+
       order.status = data.status;
+
+      return order.save();
     }
-    return order.save();
+  }
+  async UpdateOrder(id: string, data: UpdateOrder) {
+    const { userId, products, status } = data;
+    const totalprice = this.calculateTotalPrice(products as any);
+    const order = await this.OrderModel.findByIdAndUpdate(
+      { _id: id },
+      {
+        userId,
+        products,
+        totalprice,
+        status,
+      },
+      { next: true },
+    );
+    return await order;
   }
 
   async deleteOrder(id: string) {

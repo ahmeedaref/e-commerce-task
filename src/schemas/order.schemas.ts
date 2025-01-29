@@ -25,14 +25,14 @@ const ProductSchema = new Schema(
   {
     product: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
     quantity: { type: Number, required: true },
-    price: { type: Number },
+    price: { type: Number, required: true },
   },
-  { _id: false }, // prevents generating a _id for subdocuments
+  { _id: false },
 );
 export const OrderSchema = new Schema<OrderDocument>(
   {
     userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    products: { type: [ProductSchema], required: true },
+    products: { type: [ProductSchema] },
     status: {
       type: String,
       enum: Object.values(OrderStatus),
@@ -51,12 +51,10 @@ export const OrderSchema = new Schema<OrderDocument>(
 OrderSchema.pre('save', async function (next) {
   const order = this as OrderDocument;
 
-  
   await order.populate('products.product');
 
-
   order.totalprice = order.products.reduce((sum, item: any) => {
-    const productPrice = item.product.price; 
+    const productPrice = item.product.price;
     return sum + productPrice * item.quantity;
   }, 0);
 
