@@ -42,7 +42,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n \"name\":\"ahmed\",\r\n    \"email\":\"ahmed@gamil.com\",\r\n    \"password\":\"12345\"\r\n}",
+					"raw": "{\r\n \"name\":\"hassan\",\r\n    \"email\":\"hassa@gamil.com\",\r\n    \"password\":\"12345\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -226,13 +226,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTdjOTRlMjMyMWZiYmRjOWJiYzVlOSIsImVtYWlsIjoiYWhtZWRAZ2FtaWwuY29tIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE3MzgwODgzMzQsImV4cCI6MTczODA5MTkzNH0.ccchSAqsmjy0WHTUYsBQyYB514gbAGYDjHpw4aXuR1k",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTgxMzgxYzliZmZkNzMyZjYwMGVkYiIsImVtYWlsIjoiaGFzc2FAZ2FtaWwuY29tIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzM4MTE1MzU2LCJleHAiOjE3MzgxMTg5NTZ9.AzEMf-B0gWMvcXGL7lUTdwdAqyaLRrh-zadnkO5aUc8",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"userId\":\"6797c94e2321fbbdc9bbc5e9\",\r\n     \"products\":[\r\n        {\"productId\":\"6755fc0dfd57c5c9ce1a520f\",\"quantity\":2,\"price\":600},\r\n        {\"productId\":\"67562da062928c287c187593\",\"quantity\":2,\"price\":900}  \r\n     ] ,\r\n     \"status\":\"PENDING\"\r\n}",
+					"raw": "{\r\n    \"userId\":\"67981381c9bffd732f600edb\",\r\n     \"products\":[\r\n        {\"productId\":\"6755fc0dfd57c5c9ce1a520f\",\"quantity\":4,\"price\":600},\r\n        {\"productId\":\"67562da062928c287c187593\",\"quantity\":2,\"price\":900}  \r\n     ] ,\r\n     \"status\":\"PENDING\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -260,7 +260,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTgxMzgxYzliZmZkNzMyZjYwMGVkYiIsImVtYWlsIjoiaGFzc2FAZ2FtaWwuY29tIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzM4MTAxOTg2LCJleHAiOjE3MzgxMDU1ODZ9.Wyv03pFGzyCUrfEfyt4o6fNG7nD3-yQDCt4Z9k2-hus",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTgxMzgxYzliZmZkNzMyZjYwMGVkYiIsImVtYWlsIjoiaGFzc2FAZ2FtaWwuY29tIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzM4MTE5NDIzLCJleHAiOjE3MzgxMjMwMjN9._c6-yU390fOaGH4LzlEK-9UImMRGjP9rqvETrLXHnwE",
 						"type": "text"
 					}
 				],
@@ -285,7 +285,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTdjOTRlMjMyMWZiYmRjOWJiYzVlOSIsImVtYWlsIjoiYWhtZWRAZ2FtaWwuY29tIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE3MzgwODgzMzQsImV4cCI6MTczODA5MTkzNH0.ccchSAqsmjy0WHTUYsBQyYB514gbAGYDjHpw4aXuR1k",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTgxMzgxYzliZmZkNzMyZjYwMGVkYiIsImVtYWlsIjoiaGFzc2FAZ2FtaWwuY29tIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzM4MTA3NzAxLCJleHAiOjE3MzgxMTEzMDF9.ZXFM-3sEVRpUDmTKUMfnXgxpqrFfAjppUNMzeaNTIMg",
 						"type": "text"
 					}
 				],
@@ -363,7 +363,13 @@
 			"name": "update order",
 			"request": {
 				"method": "PATCH",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTgxMzgxYzliZmZkNzMyZjYwMGVkYiIsImVtYWlsIjoiaGFzc2FAZ2FtaWwuY29tIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzM4MTE5NjM3LCJleHAiOjE3MzgxMjMyMzd9.a39PaBCgA_j0FgBe3Qy022QWSSmwoKbZWasSBnNdfGY",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"products\":[\r\n        {\"productId\":\"6755fc0dfd57c5c9ce1a520f\",\"quantity\":2,\"price\":600},\r\n        {\"productId\":\"67562da062928c287c187593\",\"quantity\":1,\"price\":900}\r\n    ]\r\n}",
