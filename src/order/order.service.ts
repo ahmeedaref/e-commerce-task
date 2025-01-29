@@ -10,7 +10,7 @@ import { OrderDocument, OrderStatus } from 'src/schemas/order.schemas';
 import { ProductDocument } from 'src/schemas/product.schema';
 import { UpdateOrderStatusDto } from './Dtos/update-order-dto';
 import { UpdateOrder } from './Dtos/update-order-dto';
-import { Query } from '@nestjs/common';
+
 @Injectable()
 export class OrderService {
   constructor(
@@ -125,18 +125,23 @@ export class OrderService {
   }
   async UpdateOrder(id: string, data: UpdateOrder) {
     const { userId, products, status } = data;
-    const totalprice = this.calculateTotalPrice(products as any);
-    const order = await this.OrderModel.findByIdAndUpdate(
-      { _id: id },
-      {
-        userId,
-        products,
-        totalprice,
-        status,
-      },
-      { next: true },
-    );
-    return order;
+    const productDetails = await this.getProductDetails(products);
+    const totalprice = this.calculateTotalPrice(productDetails);
+    const order = await this.OrderModel.findByIdAndUpdate(id, {
+      userId,
+      products: productDetails.map(({ product, quantity }) => ({
+        product,
+        quantity,
+      })),
+      status,
+      totalprice,
+    })
+      .populate('products.product')
+      .exec();
+    if (!order) {
+      throw new NotFoundException('Order Not found');
+    }
+    return order.save();
   }
 
   async deleteOrder(id: string) {
