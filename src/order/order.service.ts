@@ -136,7 +136,7 @@ export class OrderService {
       },
       { next: true },
     );
-    return await order;
+    return order;
   }
 
   async deleteOrder(id: string) {
